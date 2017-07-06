@@ -77,7 +77,7 @@ class DependencyContainer implements ContainerInterface
      */
     public function get($name)
     {
-        if (isset($this->services[$name])) {
+        if ($this->has($name)) {
             /** @var IServiceCreator $service */
             $service = $this->services[$name];
 

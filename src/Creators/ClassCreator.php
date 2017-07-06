@@ -22,6 +22,7 @@ class ClassCreator extends Creator
     {
         parent::__construct($name, $source, $options, $shared);
 
+        Assertion::string($source);
         Assertion::classExists($source);
     }
 
@@ -39,9 +40,10 @@ class ClassCreator extends Creator
 
         if ($obj instanceof IServiceCreator) {
             return $obj->get([]);
+        }else{
+            return $obj;
         }
 
-        return $obj;
     }
 
     private function getConstructArgs(array $inLineArgs)

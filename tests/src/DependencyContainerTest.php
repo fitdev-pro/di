@@ -12,24 +12,6 @@ use FitdevPro\DI\TestsLib\FitTest;
  */
 class DependencyContainerTest extends FitTest
 {
-    public function badClassNameProvider()
-    {
-        return array([1], [true], [null], [[]]);
-    }
-
-    /**
-     * Ustawianie błędnych danych serwisu
-     *
-     * @dataProvider badClassNameProvider
-     * @expectedException \FitdevPro\DI\Exception\ContainerException
-     * @expectedExceptionCode 490360001
-     */
-    public function testSetServiceException($badClassName)
-    {
-        $dc = new DependencyContainer(new CreatorFactory());
-        $dc->add('service', $badClassName);
-    }
-
     /**
      * Pobieranie serwisu
      */

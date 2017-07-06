@@ -1,6 +1,6 @@
 <?php
 
-namespace FitdevPro\DI\TestLib\Stubs;
+namespace FitdevPro\DI\TestsLib\Stubs;
 
 /**
  * Class MyService
@@ -22,7 +22,7 @@ class MyService
      * @param $arg1
      * @param $arg2
      */
-    public function __construct($arg1, $arg2)
+    public function __construct($arg1=null, $arg2=null)
     {
         $this->arg1 = $arg1;
         $this->arg2 = $arg2;
