@@ -15,20 +15,20 @@ Base usage
 <?php
     
 use FitdevPro\DI\Creators\CreatorFactory;
-use FitdevPro\FitApp\Interfaces\IDependencyContainer;
+use FitdevPro\DI\DependencyContainer;
 
-$di = new Di(new CreatorFactory());
+$dc = new DependencyContainer(new CreatorFactory());
 
 //add service
-$di->add('config', new stdClass());
+$dc->add('config', new stdClass());
 
 //check if service exists
-if($di->has('config'))
+if($dc->has('config'))
 {
     //get service
-    $config = $di->get('config');
+    $config = $dc->get('config');
     //OR
-    $config = $di->getConfig();
+    $config = $dc->getConfig();
 }
 
 ```
@@ -38,25 +38,30 @@ Create complicated services
 <?php
     
 use FitdevPro\DI\Creators\CreatorFactory;
-use FitdevPro\FitApp\Interfaces\IDependencyContainer;
+use FitdevPro\DI\DependencyContainer;
+use FitdevPro\DI\Options\Actions\CallMethod;
+use FitdevPro\DI\Options\Actions\SetProperty;
+use FitdevPro\DI\Options\Values\ClassValue;
+use FitdevPro\DI\Options\Values\ServiceValue;
+use FitdevPro\DI\Options\Values\Value;
 
-$di = new Di(new CreatorFactory());
+$dc = new DependencyContainer(new CreatorFactory());
 
 //add service
-$di->add('bar', My\Foo\Bar::class,
+$dc->add('bar', \MyFoo\Bar::class,
 [
     "arguments" => [ // inject to constructor
-        new Options\Value($value), //simply value
-        new Options\ServiceValue('serviceName'), //other service
-        new Options\ClassValue('Foo\Bar\Bazz'), //new object of some class
+        new Value(123), //simply value
+        new ServiceValue($dc, 'serviceName'), //other service
+        new ClassValue('Foo\Bar\Bazz'), //new object of some class
     ],
     "properties" => [ // inject to property
-        new Options\Property('foo', new Options\Value($value)),
-        new Options\Property('bar', new Options\ServiceValue('serviceName')),
-        new Options\Property('bazz', new Options\ClassValue('Foo\Bar\Bazz')),
+        new SetProperty('foo', new Value(123)),
+        new SetProperty('bar', new ServiceValue($dc, 'serviceName')),
+        new SetProperty('bazz', new ClassValue('Foo\Bar\Bazz')),
     ],
     "calls" => [ // call service method with arguments
-        new Options\CallMethod('setFoo', [new Options\ServiceValue('serviceName'), new Options\Value($value)]),
+        new CallMethod('setFoo', [new ServiceValue($dc, 'serviceName'), new Value('abc')]),
     ],
 ]
 );
