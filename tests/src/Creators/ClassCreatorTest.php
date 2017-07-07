@@ -3,9 +3,9 @@
 namespace FitdevPro\DI\Tests\Creators;
 
 use FitdevPro\DI\Creators\ClassCreator;
-use FitdevPro\DI\Creators\ObjectCreator;
 use FitdevPro\DI\TestsLib\FitTest;
 use FitdevPro\DI\TestsLib\Stubs\MyService;
+use FitdevPro\DI\TestsLib\Stubs\MyServiceCreator;
 
 class ClassCreatorTest extends FitTest
 {
@@ -45,6 +45,15 @@ class ClassCreatorTest extends FitTest
 
     public function testGetClassObject(){
         $creator = new ClassCreator('test', MyService::class);
+
+        $out = $creator->get([123]);
+
+        $this->assertInstanceOf(MyService::class, $out);
+        $this->assertEquals(123, $out->arg1);
+    }
+
+    public function testGetClassObjectFromICreator(){
+        $creator = new ClassCreator('test', MyServiceCreator::class);
 
         $out = $creator->get([123]);
 
