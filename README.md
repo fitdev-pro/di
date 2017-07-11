@@ -75,4 +75,4 @@ To establish a consistent code quality, please provide unit tests for all your c
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/italolelis/collections/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/fitdev-pro/di/blob/master/LISENCE) for more information.
