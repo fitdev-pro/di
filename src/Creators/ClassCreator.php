@@ -4,6 +4,7 @@ namespace FitdevPro\DI\Creators;
 
 use Assert\Assertion;
 use ReflectionClass;
+use ReflectionMethod;
 
 /**
  * Class ClassCreator
@@ -58,6 +59,24 @@ class ClassCreator extends Creator
             $constructorArgs[] = $param;
         }
 
-        return $constructorArgs;
+        $re_args = array();
+
+        if (method_exists($this->source, '__construct') === true) {
+
+            $refMethod = new ReflectionMethod($this->source, '__construct');
+            $params = $refMethod->getParameters();
+
+            foreach ($params as $key => $param) {
+                if (isset($constructorArgs[$key])) {
+                    if ($param->isPassedByReference()) {
+                        $re_args[$key] = &$constructorArgs[$key];
+                    } else {
+                        $re_args[$key] = $constructorArgs[$key];
+                    }
+                }
+            }
+        }
+
+        return $re_args;
     }
 }
