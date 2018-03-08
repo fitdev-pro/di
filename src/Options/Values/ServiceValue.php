@@ -14,6 +14,7 @@ class ServiceValue extends Value
 
     /**
      * ValueService constructor.
+     * @param DependencyContainer $di
      * @param string $serviceName
      */
     public function __construct(DependencyContainer $di, string $serviceName)
@@ -22,6 +23,11 @@ class ServiceValue extends Value
         $this->di = $di;
     }
 
+    /**
+     * @return mixed
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function get()
     {
         return $this->di->get($this->value);

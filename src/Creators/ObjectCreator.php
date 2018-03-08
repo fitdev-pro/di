@@ -17,7 +17,7 @@ class ObjectCreator extends Creator
      * @param array $options
      * @param bool $shared
      */
-    public function __construct(string $name, $source, array $options = [], bool $shared = true)
+    public function __construct(string $name, $source, array $options = array(), bool $shared = true)
     {
         parent::__construct($name, $source, $options, $shared);
 

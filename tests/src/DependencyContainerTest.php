@@ -39,7 +39,6 @@ class DependencyContainerTest extends FitTest
      * Pobieranie nie istniejącego serwisu
      *
      * @expectedException \FitdevPro\DI\Exception\NotFoundException
-     * @expectedExceptionCode 490430001
      */
     public function testGetServiceException()
     {
@@ -51,7 +50,6 @@ class DependencyContainerTest extends FitTest
      * Pobieranie nie istniejącego serwisu
      *
      * @expectedException \FitdevPro\DI\Exception\NotFoundException
-     * @expectedExceptionCode 490430001
      */
     public function testGetServiceCallException()
     {

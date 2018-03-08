@@ -17,7 +17,7 @@ class ClosureCreator extends Creator
      * @param array $options
      * @param bool $shared
      */
-    public function __construct(string $name, $source, array $options = [], bool $shared = true)
+    public function __construct(string $name, $source, array $options = array(), bool $shared = true)
     {
         parent::__construct($name, $source, $options, $shared);
 
@@ -37,7 +37,7 @@ class ClosureCreator extends Creator
 
     private function getClosureArgs(array $inLineArgs)
     {
-        $constructorArgs = [];
+        $constructorArgs = array();
 
         foreach ($this->arguments as $argument) {
             $constructorArgs[] = $argument->get();

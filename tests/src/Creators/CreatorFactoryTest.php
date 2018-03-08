@@ -21,7 +21,6 @@ class CreatorFactoryTest extends FitTest
      *
      * @dataProvider badServiceDeclarationProvider
      * @expectedException \FitdevPro\DI\Exception\ContainerException
-     * @expectedExceptionCode 490360001
      */
     public function testBadServiceDeclaration($serviceDeclaration)
     {

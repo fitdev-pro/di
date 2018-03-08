@@ -8,5 +8,5 @@ namespace FitdevPro\DI\Creators;
  */
 interface ICreatorFactory
 {
-    public function create(string $name, $source, array $options = [], bool $shared = true): IServiceCreator;
+    public function create(string $name, $source, array $options = array(), bool $shared = true): IServiceCreator;
 }

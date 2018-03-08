@@ -18,11 +18,8 @@ use Psr\Container\NotFoundExceptionInterface;
  */
 class DependencyContainer implements ContainerInterface
 {
-    const   EXCEPTION_PREFIX = '490430',
-        SERVICE_NOT_FOUND = self::EXCEPTION_PREFIX . '001';
-
     /** @var IServiceCreator[] */
-    protected $services = [];
+    protected $services = array();
     /** @var  ICreatorFactory */
     protected $creatorFactory;
 
@@ -60,7 +57,7 @@ class DependencyContainer implements ContainerInterface
      * @param $shared bool - czy serwis ma być dostępny jako jeden obiekt dla całej aplikacji
      * @throws \Exception
      */
-    public function add(string $name, $source, array $options = [], bool $shared = true)
+    public function add(string $name, $source, array $options = array(), bool $shared = true)
     {
         $this->services[$name] = $this->creatorFactory->create($name, $source, $options, $shared);
     }
@@ -90,7 +87,7 @@ class DependencyContainer implements ContainerInterface
             return $service->get($params);
         }
 
-        throw new NotFoundException('Nie ma takiego serwisu: ' . $name, self::SERVICE_NOT_FOUND);
+        throw new NotFoundException('Nie ma takiego serwisu: ' . $name);
     }
 
 

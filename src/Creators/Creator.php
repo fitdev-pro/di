@@ -18,11 +18,11 @@ abstract class Creator implements IServiceCreator
 
     protected $shared = true;
     /** @var IValue[] */
-    protected $arguments = [];
+    protected $arguments = array();
     /** @var SetProperty[] */
-    protected $properties = [];
+    protected $properties = array();
     /** @var CallMethod[] */
-    protected $calls = [];
+    protected $calls = array();
 
     protected $outputObject;
 
@@ -33,7 +33,7 @@ abstract class Creator implements IServiceCreator
      * @param array $options
      * @param bool $shared
      */
-    public function __construct(string $name, $source, array $options = [], bool $shared = true)
+    public function __construct(string $name, $source, array $options = array(), bool $shared = true)
     {
         $this->name = $name;
         $this->source = $source;

@@ -19,7 +19,7 @@ class ClassCreator extends Creator
      * @param array $options
      * @param bool $shared
      */
-    public function __construct(string $name, $source, array $options = [], bool $shared = true)
+    public function __construct(string $name, $source, array $options = array(), bool $shared = true)
     {
         parent::__construct($name, $source, $options, $shared);
 
@@ -40,7 +40,7 @@ class ClassCreator extends Creator
         $obj = $reflectionClass->newInstanceArgs($constructorArgs);
 
         if ($obj instanceof IServiceCreator) {
-            return $obj->get([]);
+            return $obj->get(array());
         }else{
             return $obj;
         }
@@ -49,7 +49,7 @@ class ClassCreator extends Creator
 
     private function getConstructArgs(array $inLineArgs)
     {
-        $constructorArgs = [];
+        $constructorArgs = array();
 
         foreach ($this->arguments as $argument) {
             $constructorArgs[] = $argument->get();
